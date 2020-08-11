@@ -58,6 +58,7 @@
 (load! "+binds")
 (load! "+org")
 
+
 ;; Allow using loaded SSH keys from SSH agent
 (require 'exec-path-from-shell)
 (when (display-graphic-p)
@@ -67,6 +68,7 @@
 (exec-path-from-shell-copy-env "SSH_AUTH_SOCK")
 
 
+;; Configure golden-ratio for windows
 (use-package! golden-ratio
   :after-call pre-command-hook
   :config
@@ -88,3 +90,6 @@
 		"*Org todo*"
 		"*info*"
 		"*Messages*"))
+
+;; (after! markdown-mode
+;; 	(setq browse-url-browser-function #'browse-url-eww))
