@@ -56,7 +56,9 @@
 ;; they are implemented.
 
 (load! "+binds")
-(load! "+org")
+(load! "+irc")
+(after! org
+    (load! "+org"))
 
 
 ;; Allow using loaded SSH keys from SSH agent
@@ -68,28 +70,37 @@
 (exec-path-from-shell-copy-env "SSH_AUTH_SOCK")
 
 
-;; Configure golden-ratio for windows
-(use-package! golden-ratio
-  :after-call pre-command-hook
-  :config
-  (golden-ratio-mode +1)
-  ;; Using this hook for resizing windows is less precise than
-  ;; `doom-switch-window-hook'.
-  (remove-hook 'window-configuration-change-hook #'golden-ratio)
-  (add-hook 'doom-switch-window-hook #'golden-ratio))
+;; ;; Configure golden-ratio for windows
+;; (use-package! golden-ratio
+;;   :after-call pre-command-hook
+;;   :config
+;;   (golden-ratio-mode +1)
+;;   ;; Using this hook for resizing windows is less precise than
+;;   ;; `doom-switch-window-hook'.
+;;   (remove-hook 'window-configuration-change-hook #'golden-ratio)
+;;   (add-hook 'doom-switch-window-hook #'golden-ratio))
 
-(setq golden-ratio-exclude-modes
-	  '("calendar-mode"
-		"org-agenda-mode"
-		"help-mode"
-		"helpful-mode"
-		"rxt-help-mode"
-		"treemacs-mode" ))
-(setq golden-ratio-exclude-buffer-names
-	  '("*Org tags*"
-		"*Org todo*"
-		"*info*"
-		"*Messages*"))
+;; (setq golden-ratio-exclude-modes
+;; 	  '("calendar-mode"
+;; 		"org-agenda-mode"
+;; 		"help-mode"
+;; 		"helpful-mode"
+;; 		"rxt-help-mode"
+;; 		"treemacs-mode" ))
+;; (setq golden-ratio-exclude-buffer-names
+;; 	  '("*Org tags*"
+;; 		"*Org todo*"
+;; 		"*info*"
+;; 		"*Messages*"))
 
-;; (after! markdown-mode
-;; 	(setq browse-url-browser-function #'browse-url-eww))
+(after! circe
+  (set-irc-server! "chat.freenode.net"
+	`(:tls t
+	  :port 6697
+	  :nick "ITL"
+	  :sasl-username ,(+pass-get-user "my/dev/freenode")
+	  :sasl-password (lambda (&rest _) (+pass-get-secret "my/dev/freenode"))
+	  :channels ("#emacs"))))
+
+(setq markdown-live-preview-delete-export 'delete-on-export)
+(setq markdown-split-window-direction 'right)

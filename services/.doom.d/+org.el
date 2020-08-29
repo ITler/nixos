@@ -101,8 +101,8 @@
 (setq org-default-notes-file "~/org/refile.org")
 
 (setq org-capture-templates
-		;; (quote (("t" "todo" entry (file "~/org/refile.org")
-		(quote (("t" "todo" entry (file org-default-notes-file)
+		(quote (("t" "todo" entry (file "~/org/refile.org")
+		;; (quote (("t" "todo" entry (file org-default-notes-file)
 					"* TODO %?\n%U\n%a\n"
 					))))
 
