@@ -73,18 +73,18 @@
        :term
        ;;eshell            ; the elisp shell that works everywhere
        ;;shell             ; simple shell REPL for Emacs
-       ;;term              ; basic terminal emulator for Emacs
+       term              ; basic terminal emulator for Emacs
        ;;vterm             ; the best terminal emulation in Emacs
 
        :checkers
        syntax              ; tasing you for every semicolon you forget
-       ;;spell             ; tasing you for misspelling mispelling
+       (spell +flycheck)   ; tasing you for misspelling mispelling
        ;;grammar           ; tasing grammar mistake every you make
 
        :tools
        ansible
        ;;debugger          ; FIXME stepping through code, to help you add bugs
-       ;; direnv
+       direnv
        docker
        editorconfig      ; let someone else argue about tabs vs spaces
        ;;ein               ; tame Jupyter notebooks with emacs
@@ -139,7 +139,7 @@
        ;;lua               ; one-based indices? one-based indices
        (markdown)          ; writing docs for people to ignore
        ;;nim               ; python + lisp at the speed of c
-       ;;nix               ; I hereby declare "nix geht mehr!"
+       nix               ; I hereby declare "nix geht mehr!"
        ;;ocaml             ; an objective camel
        (org +roam)         ; organize your plain life in plain text
        ;;php               ; perl's insecure younger brother
